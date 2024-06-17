@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2021-06-21T18:42:30 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Mostrar ejemplar" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3f94e2eb-b614-4f5b-bea9-1438867c061f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BD"/>
+	<parameter name="IdColeccion" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT 
+	Com.id_comic AS Id_comic,
+	Com.numero_coleccion AS Numero,
+    Com.titulo AS Titulo,
+    Com.paginas AS Paginas,
+    Com.portada AS Portada,
+    Com.precio AS Precio,
+    C.id_coleccion AS IdColeccion,
+    C.nombre AS Nombre,
+    C.sinopsis AS Sinopsis,
+    C.editorial AS Editorial,
+    ES.estado AS Estado
+FROM
+      libreria.comics Com
+INNER JOIN
+    libreria.colecciones C ON Com.id_coleccion = C.id_coleccion
+INNER JOIN
+      libreria.estado ES ON Com.id_estado = ES.id_estado
+WHERE C.Id_coleccion =  $P{IdColeccion} 
+ORDER BY C.editorial, Com.numero_coleccion]]>
+	</queryString>
+	<field name="Id_comic" class="java.math.BigInteger">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Numero" class="java.lang.Integer"/>
+	<field name="Titulo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Paginas" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Portada" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Precio" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IdColeccion" class="java.math.BigInteger"/>
+	<field name="Nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Sinopsis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Editorial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Estado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{Nombre}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<textField>
+					<reportElement x="0" y="0" width="380" height="30" uuid="d12d5bfa-86d8-43bc-9e80-9cf31fa7ab5f"/>
+					<textElement verticalAlignment="Top">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="380" y="0" width="180" height="30" uuid="188d71fb-1965-42aa-809a-b5bd188555a5"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Editorial}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="30" y="0" width="380" height="20" uuid="6c4769ae-9a18-4ef4-a810-592fcba91a5e"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Numero} + ".- " + $F{Titulo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

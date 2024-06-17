@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2021-06-21T18:50:03 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Mostrar ejemplar" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3f94e2eb-b614-4f5b-bea9-1438867c061f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="IdEjemplar" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT 
+	Com.id_comic AS IdComic,
+	Com.numero_coleccion AS Numero,
+    Com.titulo AS Titulo,
+    Com.paginas AS Paginas,
+    Com.portada AS Portada,
+    Com.precio AS Precio,
+    C.nombre AS Nombre,
+    C.sinopsis AS Sinopsis,
+    C.editorial AS Editorial,
+    ES.estado AS Estado
+FROM
+      libreria.comics Com
+INNER JOIN
+      libreria.colecciones C ON Com.id_coleccion = C.id_coleccion
+INNER JOIN
+      libreria.estado ES ON Com.id_estado = ES.id_estado
+WHERE Com.id_comic = $P{IdEjemplar}
+ORDER BY C.editorial, Com.numero_coleccion]]>
+	</queryString>
+	<field name="IdComic" class="java.math.BigInteger"/>
+	<field name="Numero" class="java.lang.Integer"/>
+	<field name="Titulo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Paginas" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Portada" class="java.awt.Image">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Precio" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Sinopsis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Editorial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Estado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="440" splitType="Stretch">
+			<image hAlign="Left" vAlign="Top">
+				<reportElement key="" x="10" y="60" width="260" height="380" uuid="0c371979-3af2-4e3b-aab3-b0b603c241a4"/>
+				<imageExpression><![CDATA[$F{Portada}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="0" width="380" height="30" uuid="d12d5bfa-86d8-43bc-9e80-9cf31fa7ab5f"/>
+				<textElement verticalAlignment="Top">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="180" height="30" uuid="188d71fb-1965-42aa-809a-b5bd188555a5"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Editorial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="30" width="380" height="20" uuid="6c4769ae-9a18-4ef4-a810-592fcba91a5e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Numero} + ".- " + $F{Titulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="60" width="70" height="20" uuid="27a8accf-5e26-47d2-ac8e-c4c775359600"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Páginas: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="80" width="70" height="20" uuid="d4361538-fb89-46ba-8030-22636682abf1"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Precio: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="100" width="70" height="20" uuid="19a25730-40c0-4a41-9bba-dec55576aa99"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Estado: "]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="290" y="170" width="250" height="20" uuid="f39110a8-89a5-46b0-8b3f-90e115d6d8f2"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="12"/>
+					<paragraph firstLineIndent="25"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Sinopsis}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="290" y="150" width="70" height="20" uuid="93aa2d67-e168-4e6a-820b-8ef732596e5a"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isUnderline="true"/>
+					<paragraph firstLineIndent="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Sinopsis"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="100" width="200" height="20" uuid="b1ce0ee0-8859-458a-afe2-dec0d9bf2881"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Estado}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="60" width="200" height="20" uuid="1292bb6f-2bdd-4bda-b888-d8e3cc885098"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Paginas}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="360" y="80" width="200" height="20" uuid="83d380e3-228d-4e2d-977d-1c77f8577c34"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

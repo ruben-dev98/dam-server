@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<toc version="1.0" categoryclosedimage="FolderClosed" categoryopenimage="FolderOpened"  topicimage="ItemIco">  
+        <tocitem text="Ventanas" target="ventanas" expand=false>   
+            <tocitem text="Ventana principal" target="Prin"/>  
+            <tocitem text="Gestion Comic" target="gestionCom"/>              
+            <tocitem text="Gestion Colección" target="gestionCol"/>              
+            <tocitem text="Informes" target="Informes"/>                         
+        </tocitem>    
+</toc> 

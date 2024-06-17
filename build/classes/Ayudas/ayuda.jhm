@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<map version="1.0">  
+        <mapID target="index" url="Paginas/index.html"/>  
+        <mapID target="Prin" url="Paginas/Prin.html"/>
+        <mapID target="gestionCom" url="Paginas/GesCom.html"/>
+        <mapID target="gestionCol" url="Paginas/GesCol.html"/>
+        <mapID target="Informes" url="Paginas/Informes.html"/>
+</map>
